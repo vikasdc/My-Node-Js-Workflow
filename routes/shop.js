@@ -3,7 +3,8 @@ const path = require("path")
 const route = express.Router()
 
 route.get('/',(req,res,next)=> {
-    res.sendFile(path.join(__dirname,'../','views','shop.html'))
+    const x = 'variable'
+    res.render('shop',{key:x})
 })
 
 module.exports = route;

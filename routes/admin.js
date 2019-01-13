@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require("path")
 const fs = require("fs")
-
+var products = [];
 const router = express.Router()
 
 router.get('/product',(req,res,next)=>{
@@ -10,17 +10,18 @@ router.get('/product',(req,res,next)=>{
 
 router.post('/product',(req,res,next)=>{
     const body = req.body;
-    console.log(body)
-    var notes = [];
-    let productInfo = {
-        'product':body.product,
-        'price': body.price,
-        'name':body.name
-    };
-    notes.push(productInfo)
-     fs.writeFile('data.json',JSON.stringify(notes),err=>{
-        res.redirect('/admin/data')
-     })
+    products.push(body.title)
+    // console.log(body)
+    // var notes = [];
+    // let productInfo = {
+    //     'product':body.product,
+    //     'price': body.price,
+    //     'name':body.name
+    // };
+    // notes.push(productInfo)
+    //  fs.writeFile('data.json',JSON.stringify(notes),err=>{
+    //     res.redirect('/admin/data')
+    //  })
     
 })
 router.get('/viewdata',(req,res,next)=>{
@@ -29,9 +30,9 @@ router.get('/viewdata',(req,res,next)=>{
 
 router.post('/viewdata',(req,res,next)=>{
     const body = req.body;
-    var product = fs.readFileSync('data.json').toString();
-    var productInfo = JSON.parse(product);
-    var dup = productInfo.filter((product)=>product.name === body.name)
+    // var product = fs.readFileSync('data.json').toString();
+    // var productInfo = JSON.parse(product);
+    // var dup = productInfo.filter((product)=>product.name === body.name)
   
     
 
